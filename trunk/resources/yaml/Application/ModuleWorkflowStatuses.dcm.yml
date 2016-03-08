@@ -1,0 +1,53 @@
+ModuleWorkflowStatuses:
+    type: entity
+    table: module_workflow_statuses
+    id:
+        mwsId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: mws_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        mwsName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: mws_name
+        mwsDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: mws_description
+        mwsActive:
+            type: boolean
+            nullable: true
+            column: mws_active
+        mwsDateCreated:
+            type: datetime
+            nullable: true
+            column: mws_date_created
+        mwsCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: mws_created_by
+        mwsDateUpdated:
+            type: datetime
+            nullable: true
+            column: mws_date_updated
+        mwsUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: mws_updated_by
+    lifecycleCallbacks: {  }

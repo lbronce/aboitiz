@@ -1,0 +1,13 @@
+/*
+-- Query: SELECT * FROM aboitiz_legal_db.field_types
+LIMIT 0, 1000
+
+-- Date: 2016-02-24 20:53
+*/
+INSERT INTO `field_types` (`field_type_id`,`field_type_name`,`field_type_description`,`field_type_template`,`field_type_active`,`field_type_date_created`,`field_type_created_by`,`field_type_date_updated`,`field_type_updated_by`) VALUES (1,'Text','Text Field','<input type=\"text\" id=\"{id}\" name=\"{name}\" value=\"{value}\" />',1,'2016-02-24 12:00:00',1,NULL,NULL);
+INSERT INTO `field_types` (`field_type_id`,`field_type_name`,`field_type_description`,`field_type_template`,`field_type_active`,`field_type_date_created`,`field_type_created_by`,`field_type_date_updated`,`field_type_updated_by`) VALUES (2,'Text Area','Text Area Field','<textarea id=\"{id}\" name=\"{name}\">{value}</textarea>',1,'2016-02-24 12:00:00',1,NULL,NULL);
+INSERT INTO `field_types` (`field_type_id`,`field_type_name`,`field_type_description`,`field_type_template`,`field_type_active`,`field_type_date_created`,`field_type_created_by`,`field_type_date_updated`,`field_type_updated_by`) VALUES (3,'Combo Box','Combo Box','<select id=\"{id}\">{loop}<option name=\"{name}\"  value=\"{value}\">{textvalue}</option>{endloop}</select>',1,'2016-02-24 12:00:00',1,NULL,NULL);
+INSERT INTO `field_types` (`field_type_id`,`field_type_name`,`field_type_description`,`field_type_template`,`field_type_active`,`field_type_date_created`,`field_type_created_by`,`field_type_date_updated`,`field_type_updated_by`) VALUES (4,'Checkbox','Checkbox','<input type=\"checkbox\" name=\"{name}\" value=\"{value}\" />',1,'2016-02-24 12:00:00',1,NULL,NULL);
+INSERT INTO `field_types` (`field_type_id`,`field_type_name`,`field_type_description`,`field_type_template`,`field_type_active`,`field_type_date_created`,`field_type_created_by`,`field_type_date_updated`,`field_type_updated_by`) VALUES (5,'Checkbox Group','Checkbox Group','{loop}<input type=\"checkbox\" name=\"{name}\" value=\"{value}\" />{endloop}',1,'2016-02-24 12:00:00',1,NULL,NULL);
+INSERT INTO `field_types` (`field_type_id`,`field_type_name`,`field_type_description`,`field_type_template`,`field_type_active`,`field_type_date_created`,`field_type_created_by`,`field_type_date_updated`,`field_type_updated_by`) VALUES (6,'Radio','Radio','{loop}<input type=\"radio\" name=\"{name}\" value=\"{value}\" />{endloop}',1,'2016-02-24 12:00:00',1,NULL,NULL);
+INSERT INTO `field_types` (`field_type_id`,`field_type_name`,`field_type_description`,`field_type_template`,`field_type_active`,`field_type_date_created`,`field_type_created_by`,`field_type_date_updated`,`field_type_updated_by`) VALUES (7,'File','File','<input type=\"file\" name=\"{name}\" />',1,'2016-02-24 12:00:00',1,NULL,NULL);

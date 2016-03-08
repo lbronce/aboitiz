@@ -1,0 +1,113 @@
+Requests:
+    type: entity
+    table: requests
+    indexes:
+        service_categories_service_category_id_idx:
+            columns:
+                - request_service_category_id
+        module_workflow_statuses_status_id_idx:
+            columns:
+                - request_status_id
+        documents_document_id_idx:
+            columns:
+                - request_document_id
+    id:
+        requestId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: request_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        requestParameters:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: request_parameters
+        requestCompanyId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: request_company_id
+        requestRemarks:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: request_remarks
+        requestAttachments:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: request_attachments
+        requestScheduleStatusId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: request_schedule_status_id
+        requestActive:
+            type: boolean
+            nullable: true
+            column: request_active
+        requestDateCreated:
+            type: datetime
+            nullable: true
+            column: request_date_created
+        requestCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: request_created_by
+        requestDateUpdated:
+            type: datetime
+            nullable: true
+            column: request_date_updated
+        requestUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: request_updated_by
+    manyToOne:
+        requestDocument:
+            targetEntity: Documents
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                request_document_id:
+                    referencedColumnName: document_id
+            orphanRemoval: false
+        requestStatus:
+            targetEntity: ModuleWorkflowStatuses
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                request_status_id:
+                    referencedColumnName: mws_id
+            orphanRemoval: false
+        requestServiceCategory:
+            targetEntity: ServiceCategories
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                request_service_category_id:
+                    referencedColumnName: service_category_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

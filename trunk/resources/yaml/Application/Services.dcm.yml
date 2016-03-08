@@ -1,0 +1,53 @@
+Services:
+    type: entity
+    table: services
+    id:
+        serviceId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: service_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        serviceName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: service_name
+        serviceDescription:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: service_description
+        serviceActive:
+            type: boolean
+            nullable: true
+            column: service_active
+        serviceDateCreated:
+            type: datetime
+            nullable: true
+            column: service_date_created
+        serviceCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: service_created_by
+        serviceDateUpdated:
+            type: datetime
+            nullable: true
+            column: service_date_updated
+        serviceUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: service_updated_by
+    lifecycleCallbacks: {  }

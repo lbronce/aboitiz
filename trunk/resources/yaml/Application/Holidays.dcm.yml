@@ -1,0 +1,68 @@
+Holidays:
+    type: entity
+    table: holidays
+    id:
+        holidayId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: holiday_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        holidayName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: holiday_name
+        holidayDate:
+            type: date
+            nullable: true
+            column: holiday_date
+        holidayActive:
+            type: boolean
+            nullable: true
+            column: holiday_active
+        holidayMonth:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: holiday_month
+        holidayDay:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: holiday_day
+        holidayYear:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: holiday_year
+        holidayDateCreated:
+            type: datetime
+            nullable: true
+            column: holiday_date_created
+        holidayCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: holiday_created_by
+        holidayDateUpdated:
+            type: datetime
+            nullable: true
+            column: holiday_date_updated
+        holidayUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: holiday_updated_by
+    lifecycleCallbacks: {  }

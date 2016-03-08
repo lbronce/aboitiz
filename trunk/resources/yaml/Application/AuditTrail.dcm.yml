@@ -1,0 +1,47 @@
+AuditTrail:
+    type: entity
+    table: audit_trail
+    indexes:
+        modules_module_id_idx:
+            columns:
+                - audit_trail_module_id
+    id:
+        auditTrailId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: audit_trail_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        auditTrailUserId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: audit_trail_user_id
+        auditTrailTimestamp:
+            type: datetime
+            nullable: true
+            column: audit_trail_timestamp
+        auditTrailAction:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: audit_trail_action
+    manyToOne:
+        auditTrailModule:
+            targetEntity: Modules
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                audit_trail_module_id:
+                    referencedColumnName: module_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

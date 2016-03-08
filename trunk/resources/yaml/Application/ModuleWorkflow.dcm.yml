@@ -1,0 +1,87 @@
+ModuleWorkflow:
+    type: entity
+    table: module_workflow
+    indexes:
+        module_workflow_role_id_idx:
+            columns:
+                - module_workflow_role_id
+        module_workflow_module_id_idx:
+            columns:
+                - module_workflow_module_id
+    id:
+        moduleWorkflowId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: module_workflow_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        moduleWorkflowName:
+            type: string
+            nullable: true
+            length: 150
+            options:
+                fixed: false
+            column: module_workflow_name
+        moduleWorkflowDescription:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: module_workflow_description
+        moduleWorkflowActive:
+            type: boolean
+            nullable: true
+            column: module_workflow_active
+        moduleWorkflowDateCreated:
+            type: datetime
+            nullable: true
+            column: module_workflow_date_created
+        moduleWorkflowCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: module_workflow_created_by
+        moduleWorkflowDateUpdated:
+            type: datetime
+            nullable: true
+            column: module_workflow_date_updated
+        moduleWorkflowUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: module_workflow_updated_by
+        rolesRoleId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: roles_role_id
+    manyToOne:
+        moduleWorkflowModule:
+            targetEntity: Modules
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                module_workflow_module_id:
+                    referencedColumnName: module_id
+            orphanRemoval: false
+        moduleWorkflowRole:
+            targetEntity: Roles
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                module_workflow_role_id:
+                    referencedColumnName: role_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

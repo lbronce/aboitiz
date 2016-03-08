@@ -1,0 +1,53 @@
+Modules:
+    type: entity
+    table: modules
+    id:
+        moduleId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: module_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        moduleName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: module_name
+        moduleDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: module_description
+        moduleActive:
+            type: boolean
+            nullable: true
+            column: module_active
+        moduleDateCreated:
+            type: datetime
+            nullable: true
+            column: module_date_created
+        moduleCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: module_created_by
+        moduleDateUpdated:
+            type: datetime
+            nullable: true
+            column: module_date_updated
+        moduleUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: module_updated_by
+    lifecycleCallbacks: {  }

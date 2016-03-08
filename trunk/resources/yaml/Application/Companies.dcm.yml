@@ -1,0 +1,92 @@
+Companies:
+    type: entity
+    table: companies
+    id:
+        companyId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: company_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        companyName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: company_name
+        companyPrincipalAddress:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+            column: company_principal_address
+        companyIncorporationDate:
+            type: datetime
+            nullable: true
+            column: company_incorporation_date
+        companyOperationsStatus:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: company_operations_status
+        companyStatusOfFiling:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: company_status_of_filing
+        companyStatus:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: company_status
+        companyBusinessAddress:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+            column: company_business_address
+        companyAsmDate:
+            type: datetime
+            nullable: true
+            column: company_asm_date
+        companyQuorumRequirement:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: company_quorum_requirement
+        companySecRegistrationNumber:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: company_sec_registration_number
+        companyTin:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: company_tin
+        companyContact:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: company_contact
+    lifecycleCallbacks: {  }

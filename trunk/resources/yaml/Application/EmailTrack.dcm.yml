@@ -1,0 +1,87 @@
+EmailTrack:
+    type: entity
+    table: email_track
+    indexes:
+        oauth_users_oauth_user_id_idx:
+            columns:
+                - email_track_oauth_user_id
+        requests_request_id_idx:
+            columns:
+                - email_track_request_id
+    id:
+        emailTrackId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: email_track_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        emailTrackEmailToken:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: email_track_email_token
+        emailTrackTimeout:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+            column: email_track_timeout
+        emailTrackUsed:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: email_track_used
+        emailTrackActive:
+            type: boolean
+            nullable: true
+            column: email_track_active
+        emailTrackDateCreated:
+            type: datetime
+            nullable: true
+            column: email_track_date_created
+        emailTrackCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: email_track_created_by
+        emailTrackDateUpdated:
+            type: datetime
+            nullable: true
+            column: email_track_date_updated
+        emailTrackUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: email_track_updated_by
+    manyToOne:
+        emailTrackOauthUser:
+            targetEntity: OauthUsers
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                email_track_oauth_user_id:
+                    referencedColumnName: oauth_user_id
+            orphanRemoval: false
+        emailTrackRequest:
+            targetEntity: Requests
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                email_track_request_id:
+                    referencedColumnName: request_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

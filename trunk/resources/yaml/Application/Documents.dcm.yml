@@ -1,0 +1,53 @@
+Documents:
+    type: entity
+    table: documents
+    id:
+        documentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: document_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        documentFileName:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+            column: document_file_name
+        documentLocation:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+            column: document_location
+        documentActive:
+            type: boolean
+            nullable: true
+            column: document_active
+        documentDateCreated:
+            type: datetime
+            nullable: true
+            column: document_date_created
+        documentCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: document_created_by
+        documentDateUpdated:
+            type: datetime
+            nullable: true
+            column: document_date_updated
+        documentUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: document_updated_by
+    lifecycleCallbacks: {  }

@@ -1,0 +1,231 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath('bootstrap-wysiwyg-master/index.css'));
+    $this->headLink()->appendStylesheet($this->basePath('bootstrap-wysiwyg-master/external/google-code-prettify/prettify.css'));
+    $this->headLink()->appendStylesheet($this->basePath('module/Templates/css/edit.css'));
+    $this->headLink()->appendStylesheet($this->basePath('css/bootstrap-responsive.min'));
+    $this->headLink()->appendStylesheet($this->basePath('css/bootstrap-combined.no-icons.min'));
+    $this->headLink()->appendStylesheet($this->basePath('module/Templates/css/edit.css'));
+    $this->headLink()->appendStylesheet($this->basePath('css/select2/select2.min.css'));
+    
+    
+    $this->headScript()->appendFile($this->basePath('bootstrap-wysiwyg-master/bootstrap-wysiwyg.js'));
+    $this->headScript()->appendFile($this->basePath('bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js'));
+    $this->headScript()->appendFile($this->basePath('bootstrap-wysiwyg-master/external/jquery.hotkeys.js'));
+    $this->headScript()->appendFile($this->basePath('js/jquery-ui.js'));
+    $this->headScript()->appendFile($this->basePath('js/select2/select2.min.js'));
+    $this->inlineScript()->appendFile($this->basePath('module/Templates/js/edit.js'));
+?>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <form action="" method="POST">
+                <div class="panel-heading"><i class="fa fa-file-text-o"></i>  Template</div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#template">Template</a></li>
+                        <li><a data-toggle="tab" href="#document-template">Document Template</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="template" class="tab-pane fade in active">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label for="formTemplateName">Name:</label>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="formTemplateName" name="formTemplateName" value="<?=isset($this->post['formTemplateName'])?$this->post['formTemplateName']:((isset($this->template['formTemplateName'])?$this->template['formTemplateName']:''))?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label for="formTemplateServiceTypeId">Service:</label>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <select name="formTemplateServiceTypeId" class="form-control">
+                                            <?php foreach($this->services as $sti => $stv): ?>
+                                                <option value="<?=$stv['serviceId']?>" <?=($stv['serviceId'] == $this->template['formTemplateServiceTypeId'])?'selected':''?>><?=$stv['serviceName']?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label for="formTemplateDescription">Description:</label>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="formTemplateDescription" name="formTemplateDescription" value="<?=isset($this->post['formTemplateDescription'])?$this->post['formTemplateName']:((isset($this->template['formTemplateDescription'])?$this->template['formTemplateDescription']:''))?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-7">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox"> Active</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading"><i class="fa fa-file-text-o"></i>  Fields Settings</div>
+                                        <div class="panel-body">
+                                            <table id="form_templates" class="display" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Field Name</th>
+                                                        <th>Description</th>
+                                                        <th>Field Type</th>
+                                                        <th>Possible Values</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <?php foreach($this->template_fields as $i => $v): ?>
+                                                    <tr>
+                                                        <td>
+                                                            <input class="form-control" name="ftfName[]" type="text" value="<?=$v['ftfName']?>"/>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" name="ftfDescription[]" type="text" value="<?=$v['ftfDescription']?>" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control select2" name="ftfFieldTypeId[]">
+                                                                <?php foreach($this->field_types as $fti => $ftv): ?>
+                                                                    <option value="<?=$ftv['fieldTypeId']?> " <?=($ftv['fieldTypeId'] == $v['fieldTypeId'])?'selected':''?>><?=$ftv['fieldTypeName']?></option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" name="ftfPossibleValues[]" type="text" value="<?=$v['ftfPossibleValues']?>" />
+                                                        </td>
+                                                        <td>
+                                                            <label><button class="btn btn-danger cmd-delete"><i class="fa fa-times"></i> </button></label>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                                
+                                                <?php if(empty($this->template_fields)):?>
+                                                    <tr>
+                                                        <td>
+                                                            <input class="form-control" name="ftfName[]" type="text" value=""/>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" name="ftfDescription[]" type="text" value="" />
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" name="ftfFieldTypeId[]">
+                                                                <?php foreach($this->field_types as $fti => $ftv): ?>
+                                                                    <option value="<?=$ftv['fieldTypeId']?>"><?=$ftv['fieldTypeName']?></option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" name="ftfPossibleValues[]" type="text" value="" />
+                                                        </td>
+                                                        <td>
+                                                            <label><button class="btn btn-danger cmd-delete"><i class="fa fa-times"></i> </button></label>
+                                                        </td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </table>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <a href="#" class="btn btn-default cmd-add-field">Add Field</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="document-template" class="tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div id="alerts"></div>
+                                    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                                      <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
+                                          <ul class="dropdown-menu">
+                                          </ul>
+                                        </div>
+                                      <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                                          <ul class="dropdown-menu">
+                                          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                                          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                                          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                                          </ul>
+                                      </div>
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                                        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                                        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                                        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                                      </div>
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                                        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                                        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-indent-left"></i></a>
+                                        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent-right"></i></a>
+                                      </div>
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+                                        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+                                        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+                                        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+                                      </div>
+                                      <div class="btn-group">
+                                                  <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
+                                                    <div class="dropdown-menu input-append">
+                                                            <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                                                            <button class="btn" type="button">Add</button>
+                                        </div>
+                                        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
+
+                                      </div>
+
+                                      <div class="btn-group">
+                                        <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture"></i></a>
+                                        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                                      </div>
+                                      <div class="btn-group">
+                                        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                                        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                                      </div>
+                                      <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
+                                    </div>
+
+                                    <div id="editor" class="droppable">
+                                        <?=  html_entity_decode(HTMLENTITIES($this->template['documentTemplateContent']))?>
+                                    </div>
+                                    <input type="hidden" name="documentTemplateContent" id="documentTemplateContent" value="<?=html_entity_decode(HTMLENTITIES($this->template['documentTemplateContent']))?>"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row">
+                                        <div class="col-lg-11">
+                                            <h4>Drag Items to the editor</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <?php foreach($this->template_fields as $i => $v): ?>
+                                            <div class="draggable col-lg-11 btn btn-default" data-ftfName="<?=$v['ftfName']?>"><?=$v['ftfName']?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-info">Update</button>
+                    <button class="btn btn-default">Preview</button>
+                    <a href="/templates" class="btn btn-default">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

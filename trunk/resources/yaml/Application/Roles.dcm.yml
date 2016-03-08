@@ -1,0 +1,51 @@
+Roles:
+    type: entity
+    table: roles
+    id:
+        roleId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: role_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        roleName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: role_name
+        roleDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: role_description
+        roleActive:
+            type: boolean
+            nullable: true
+            column: role_active
+        roleDateCreated:
+            type: datetime
+            nullable: true
+            column: role_date_created
+        roleCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: role_created_by
+        roleDateUpdated:
+            type: datetime
+            nullable: true
+            column: role_date_updated
+        roleUpdatedBy:
+            type: datetime
+            nullable: true
+            column: role_updated_by
+    lifecycleCallbacks: {  }

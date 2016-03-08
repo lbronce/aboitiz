@@ -1,0 +1,68 @@
+BusinessNatures:
+    type: entity
+    table: business_natures
+    indexes:
+        companies_company_id_idx:
+            columns:
+                - business_nature_company_id
+    id:
+        businessNatureId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: business_nature_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        businessNatureName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: business_nature_name
+        businessNatureDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: business_nature_description
+        businessNatureActive:
+            type: boolean
+            nullable: true
+            column: business_nature_active
+        businessNatureDateCreated:
+            type: datetime
+            nullable: true
+            column: business_nature_date_created
+        businessNatureCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: business_nature_created_by
+        businessNatureDateUpdated:
+            type: datetime
+            nullable: true
+            column: business_nature_date_updated
+        businessNatureUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: business_nature_updated_by
+    manyToOne:
+        businessNatureCompany:
+            targetEntity: Companies
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                business_nature_company_id:
+                    referencedColumnName: company_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

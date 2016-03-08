@@ -1,0 +1,74 @@
+DocumentTemplates:
+    type: entity
+    table: document_templates
+    indexes:
+        documents_document_id_idx:
+            columns:
+                - document_template_document_id
+    id:
+        documentTemplateId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: document_template_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        documentTemplateName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: document_template_name
+        documentTemplateCompanyId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: document_template_company_id
+        documentTemplateContent:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: document_template_content
+        documentTemplateActive:
+            type: boolean
+            nullable: true
+            column: document_template_active
+        documentTenmplateDateCreated:
+            type: datetime
+            nullable: true
+            column: document_tenmplate_date_created
+        documentTemplateCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: document_template_created_by
+        documentTemplateDateUpdated:
+            type: datetime
+            nullable: true
+            column: document_template_date_updated
+        documentTemplateUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: document_template_updated_by
+    manyToOne:
+        documentTemplateDocument:
+            targetEntity: Documents
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                document_template_document_id:
+                    referencedColumnName: document_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

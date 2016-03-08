@@ -1,0 +1,46 @@
+UserCompanyRoles:
+    type: entity
+    table: user_company_roles
+    indexes:
+        roles_role_id_idx:
+            columns:
+                - ucr_role_id
+        companies_company_id_idx:
+            columns:
+                - ucr_company_id
+        IDX_1F4121F2B673F6FC:
+            columns:
+                - ucr_user_id
+    id: {  }
+    oneToOne:
+        ucrCompany:
+            targetEntity: Companies
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ucr_company_id:
+                    referencedColumnName: company_id
+            orphanRemoval: false
+        ucrUser:
+            targetEntity: OauthUsers
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ucr_user_id:
+                    referencedColumnName: oauth_user_id
+            orphanRemoval: false
+        ucrRole:
+            targetEntity: Roles
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ucr_role_id:
+                    referencedColumnName: role_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

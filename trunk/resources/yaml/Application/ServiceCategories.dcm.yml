@@ -1,0 +1,68 @@
+ServiceCategories:
+    type: entity
+    table: service_categories
+    indexes:
+        service_categories_service_id_idx:
+            columns:
+                - service_category_parent_id
+    id:
+        serviceCategoryId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: service_category_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        serviceCategoryName:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: service_category_name
+        serviceCategoryDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: service_category_description
+        serviceCategoryActive:
+            type: boolean
+            nullable: true
+            column: service_category_active
+        serviceCategoryDateCreated:
+            type: datetime
+            nullable: true
+            column: service_category_date_created
+        serviceCategoryCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: service_category_created_by
+        serviceCategoryDateUpdated:
+            type: datetime
+            nullable: true
+            column: service_category_date_updated
+        serviceCategoryUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: service_category_updated_by
+    manyToOne:
+        serviceCategoryParent:
+            targetEntity: Services
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                service_category_parent_id:
+                    referencedColumnName: service_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

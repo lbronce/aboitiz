@@ -1,0 +1,67 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath('bootstrap-wysiwyg-master/index.css'));
+    $this->headLink()->appendStylesheet($this->basePath('bootstrap-wysiwyg-master/external/google-code-prettify/prettify.css'));
+    $this->headLink()->appendStylesheet($this->basePath('module/Templates/css/edit.css'));
+    $this->headLink()->appendStylesheet($this->basePath('css/bootstrap-responsive.min'));
+    $this->headLink()->appendStylesheet($this->basePath('css/bootstrap-combined.no-icons.min'));
+    $this->headLink()->appendStylesheet($this->basePath('module/Templates/css/edit.css'));
+    $this->headLink()->appendStylesheet($this->basePath('css/select2/select2.min.css'));
+    
+    
+    $this->headScript()->appendFile($this->basePath('bootstrap-wysiwyg-master/bootstrap-wysiwyg.js'));
+    $this->headScript()->appendFile($this->basePath('bootstrap-wysiwyg-master/external/google-code-prettify/prettify.js'));
+    $this->headScript()->appendFile($this->basePath('bootstrap-wysiwyg-master/external/jquery.hotkeys.js'));
+    $this->headScript()->appendFile($this->basePath('js/jquery-ui.js'));
+    $this->inlineScript()->appendFile($this->basePath('module/Templates/js/email_templates_edit.js'));
+    $this->inlineScript()->appendFile($this->basePath('js/select2/select2.min.js'));
+?>
+
+<form action="" method="POST">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span><i class="fa fa-file-text-o"></i> Email Template</span>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label for="fieldTypeName">Name:</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="hidden" name="fieldTypeId" id="fieldTypeId" value="<?=isset($this->template['fieldTypeId'])?$this->template['fieldTypeId']:''?>" />
+                            <input type="text" class="form-control" id="fieldTypeName" name="fieldTypeName" value="<?=isset($this->post['fieldTypeName'])?$this->post['fieldTypeName']:((isset($this->template['fieldTypeName'])?$this->template['fieldTypeName']:''))?>">
+                            <div class="validation_error"><?=isset($this->validation_errors['fieldTypeName'])?$this->validation_errors['fieldTypeName']:''?></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label for="fieldTypeDescription">Description:</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="hidden" name="fieldTypeId" id="fieldTypeId" value="<?=isset($this->template['fieldTypeId'])?$this->template['fieldTypeId']:''?>" />
+                            <input type="text" class="form-control" id="fieldTypeDescription" name="fieldTypeDescription" value="<?=isset($this->post['fieldTypeDescription'])?$this->post['fieldTypeDescription']:((isset($this->template['fieldTypeDescription'])?$this->template['fieldTypeDescription']:''))?>">
+                            <div class="validation_error"><?=isset($this->validation_errors['fieldTypeDescription'])?$this->validation_errors['fieldTypeDescription']:''?></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label for="fieldTypeDescription">Template:</label>
+                        </div>
+                        <div class="col-lg-10">
+                            <textarea name="fieldTypeTemplate" class="form-control"><?=isset($this->post['fieldTypeTemplate'])?$this->post['fieldTypeTemplate']:((isset($this->template['fieldTypeTemplate'])?$this->template['fieldTypeTemplate']:''))?></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-info">Add</button>
+                <a href="/templates/field_types" class="btn btn-default">Back</a>
+            </div>
+        </div>
+    </div>
+</form>

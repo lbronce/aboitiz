@@ -1,0 +1,46 @@
+ModuleWorkflowRel:
+    type: entity
+    table: module_workflow_rel
+    indexes:
+        module_workflow_rel_module_workflow_id_idx:
+            columns:
+                - mwr_module_workflow_id
+        module_workflow_rel_mws_id_idx:
+            columns:
+                - mwr_mws_id
+        module_workflow_rel_mws_id_rel_idx:
+            columns:
+                - mws_mws_id_rel
+    id: {  }
+    oneToOne:
+        mwrModuleWorkflow:
+            targetEntity: ModuleWorkflow
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mwr_module_workflow_id:
+                    referencedColumnName: module_workflow_id
+            orphanRemoval: false
+        mwrMws:
+            targetEntity: ModuleWorkflowStatuses
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mwr_mws_id:
+                    referencedColumnName: mws_id
+            orphanRemoval: false
+        mwsMwsRel:
+            targetEntity: ModuleWorkflowStatuses
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mws_mws_id_rel:
+                    referencedColumnName: mws_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

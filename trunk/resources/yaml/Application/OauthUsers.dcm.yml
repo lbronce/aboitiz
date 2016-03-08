@@ -1,0 +1,46 @@
+OauthUsers:
+    type: entity
+    table: oauth_users
+    id:
+        oauthUserId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: oauth_user_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        oauthUserEmail:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: oauth_user_email
+        oauthUserActive:
+            type: boolean
+            nullable: true
+            column: oauth_user_active
+        oauthUserDateCreated:
+            type: datetime
+            nullable: true
+            column: oauth_user_date_created
+        oauthUserCreatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: oauth_user_created_by
+        oauthUserDateUpdated:
+            type: datetime
+            nullable: true
+            column: oauth_user_date_updated
+        oauthUserUpdatedBy:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: oauth_user_updated_by
+    lifecycleCallbacks: {  }
